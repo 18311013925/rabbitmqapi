@@ -1,0 +1,4 @@
+virtual host-虚拟主机
+虚拟地址， 用于进行逻辑隔离， 最上层的消息路由
+一个virtual host里面可以有若干个Exchange和queue;
+一个virtual host里面不能有相同名称的Exchange或queue
