@@ -1,6 +1,7 @@
 package rabbitmq.api.returnListener;
 
 import com.rabbitmq.client.*;
+import rabbitmq.api.utils.RabbitClientUtils;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -18,12 +19,9 @@ public class Produce {
      * @throws TimeoutException
      */
     public static void main(String[] args) throws IOException, TimeoutException {
-        ConnectionFactory connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost("127.0.0.1");
-        connectionFactory.setPort(5672);
-        connectionFactory.setVirtualHost("/");
 
-        Connection connection = connectionFactory.newConnection();
+
+        Connection connection = RabbitClientUtils.getConnection();
         Channel channel = connection.createChannel();
 
         String exchangeName = "test_return_exchange";

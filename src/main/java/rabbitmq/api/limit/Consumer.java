@@ -3,6 +3,7 @@ package rabbitmq.api.limit;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import rabbitmq.api.utils.RabbitClientUtils;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -15,13 +16,9 @@ import java.util.concurrent.TimeoutException;
 public class Consumer {
 
     public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
-        ConnectionFactory connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost("127.0.0.1");
-        connectionFactory.setPort(5672);
-        connectionFactory.setVirtualHost("/");
-        Connection connection = connectionFactory.newConnection();
-        Channel channel = connection.createChannel();
 
+        Connection connection = RabbitClientUtils.getConnection();
+        Channel channel = connection.createChannel();
         String exchangeName = "test_qos_exchange";
         String routingKey = "qos.#";
         String queueName = "test_qos_queue";

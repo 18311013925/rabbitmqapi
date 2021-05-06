@@ -3,6 +3,7 @@ package rabbitmq.api.dlx;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import rabbitmq.api.utils.RabbitClientUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,11 +18,7 @@ import java.util.concurrent.TimeoutException;
 public class Consumer {
 
     public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
-        ConnectionFactory connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost("127.0.0.1");
-        connectionFactory.setPort(5672);
-        connectionFactory.setVirtualHost("/");
-        Connection connection = connectionFactory.newConnection();
+        Connection connection = RabbitClientUtils.getConnection();
         Channel channel = connection.createChannel();
         // 这就是一个普通的交换机和队列，交换机
         String exchangeName = "test_dlx_exchange";

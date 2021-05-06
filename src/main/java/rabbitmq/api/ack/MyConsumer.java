@@ -35,7 +35,7 @@ public class MyConsumer extends DefaultConsumer {
         if ((Integer) properties.getHeaders().get("num") == 0) {
             // 一般requeue 设置为false, 如果消息失败，会把这条消息添加到队列的尾端， 如果一直失败， 一直尝试
             channel.basicNack(envelope.getDeliveryTag(), false, true);
-        }else {
+        } else {
             //long deliveryTag,
             // boolean multiple, 是否批量删除, false 不支持批量签收
             //basicAck 主动给broker 推送消息

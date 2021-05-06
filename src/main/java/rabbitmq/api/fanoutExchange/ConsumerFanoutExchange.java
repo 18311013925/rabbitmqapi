@@ -1,18 +1,13 @@
 package rabbitmq.api.fanoutExchange;
 
 import com.rabbitmq.client.*;
+import rabbitmq.api.utils.RabbitClientUtils;
 
 public class ConsumerFanoutExchange {
 
     public static void main(String[] args) throws Exception {
-        ConnectionFactory connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost("127.0.0.1");
-        connectionFactory.setPort(5672);
-        connectionFactory.setUsername("guest");
-        connectionFactory.setPassword("guest");
-        connectionFactory.setVirtualHost("/");
         // 2通过连接工厂创建连接
-        Connection connection = connectionFactory.newConnection();
+        Connection connection = RabbitClientUtils.getConnection();
         // 3通过connection 创建一个Channel
         Channel channel = connection.createChannel();
 

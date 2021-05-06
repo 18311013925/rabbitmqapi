@@ -4,6 +4,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.ConfirmListener;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import rabbitmq.api.utils.RabbitClientUtils;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -16,14 +17,8 @@ import java.util.concurrent.TimeoutException;
 public class Produce {
 
     public static void main(String[] args) throws IOException, TimeoutException {
-        // 1.创建ConnectionFactory
-        ConnectionFactory connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost("127.0.0.1");
-        connectionFactory.setPort(5672);
-        connectionFactory.setVirtualHost("/");
-
         // 2. 获取Connection
-        Connection connection = connectionFactory.newConnection();
+        Connection connection = RabbitClientUtils.getConnection();
 
         //3. 通过Connection 创建一个新的Channel
         Channel channel = connection.createChannel();

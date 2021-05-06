@@ -5,19 +5,15 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 import com.rabbitmq.client.QueueingConsumer.Delivery;
+import rabbitmq.api.utils.RabbitClientUtils;
 
 public class Consumer {
 
 	
 	public static void main(String[] args) throws Exception {
-		
-		
-		ConnectionFactory connectionFactory = new ConnectionFactory();
-		connectionFactory.setHost("127.0.0.1");
-		connectionFactory.setPort(5672);
-		connectionFactory.setVirtualHost("/");
-		
-		Connection connection = connectionFactory.newConnection();
+
+
+		Connection connection = RabbitClientUtils.getConnection();
 		Channel channel = connection.createChannel();
 		
 		
